@@ -1,11 +1,12 @@
 const express = require('express');
-const takeScreenshot = require('./screenshot'); // Path to your screenshot script
+const takeScreenshot = require('./screenshot');
+const path = require('path');
 
 const app = express();
 const port = 3000;
 
 // Serve static files from 'screenshots' directory
-app.use('/screenshots', express.static('screenshots'));
+app.use('/screenshots', express.static(path.join(__dirname, 'screenshots')));
 
 app.get('/screenshot', async (req, res) => {
     const url = req.query.url; // Get URL from query parameter
